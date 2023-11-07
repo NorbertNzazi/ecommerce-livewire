@@ -129,7 +129,7 @@ ol {
 	right: 0;
 	height: 4px;
 	width: 80px;
-	background: #7fad39;
+	background: #e100ff;
 	content: "";
 	margin: 0 auto;
 }
@@ -587,7 +587,7 @@ ol {
 }
 
 .hero__categories__all {
-	background: #7fad39;
+	background: #e100ff;
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
