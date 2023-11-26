@@ -147,8 +147,8 @@
                                 <ul>
                                     @foreach ($cartItems as $cartItem)
                                         <li wire:key={{ $cartItem->cart_item_id }}>
-                                            {{ $cartItem->item->name }}
-                                            <span>R{{ $cartItem->qty * $cartItem->item->price }}</span>
+                                            {{ $cartItem->product->name }}
+                                            <span>R{{ $cartItem->qty * $cartItem->product->price }}</span>
                                         </li>
                                     @endforeach
                                 </ul>

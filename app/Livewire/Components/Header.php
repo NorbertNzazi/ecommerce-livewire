@@ -38,9 +38,17 @@ class Header extends Component
     {
         $this->cartItemsTotal = 0;
 
+        // dd($this->cartItems);
+
         foreach ($this->cartItems as $cartItem) {
-            $this->cartItemsTotal += $cartItem->item->price * $cartItem->qty;
+            $this->cartItemsTotal += $cartItem->product->price * $cartItem->qty;
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('auth');
     }
 
     public function render()

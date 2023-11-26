@@ -3,9 +3,7 @@
 namespace App\Livewire\Views;
 
 use App\Models\CartItem;
-use App\Models\Item;
 use Livewire\Component;
-use Livewire\Attributes\Renderless;
 use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
@@ -66,7 +64,7 @@ class Cart extends Component
         $this->cartItemsTotal = 0;
 
         foreach ($this->cartItems as $cartItem) {
-            $this->cartItemsTotal += $cartItem->item->price * $cartItem->qty;
+            $this->cartItemsTotal += $cartItem->product->price * $cartItem->qty;
         }
     }
 

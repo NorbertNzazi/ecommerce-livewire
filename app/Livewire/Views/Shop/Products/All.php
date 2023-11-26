@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Livewire\Views;
+namespace App\Livewire\Views\Shop\Products;
 
 use App\Models\CartItem;
-use App\Models\Item;
+use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Renderless;
 
-class Home extends Component
+class All extends Component
 {
 
     public $items;
 
     public function mount()
     {
-        $this->items = Item::all();
+        if (!Auth::check()) {
+            return redirect()->route('auth');
+        }
+
+        $this->items = Product::where('user_id', '!=', Auth::user()->user_id)->get();
     }
 
     #[Renderless]
@@ -30,7 +34,7 @@ class Home extends Component
         try {
             CartItem::create([
                 'user_id' => Auth::user()->user_id,
-                'item_id' => $id,
+                'product_id' => $id,
                 'qty' => 1
             ]);
 
@@ -41,13 +45,13 @@ class Home extends Component
         }
     }
 
-    public function viewItem($id)
+    public function viewProduct($id)
     {
-        return redirect()->route('item', ['id' => $id]);
+        return redirect()->route('product', ['id' => $id]);
     }
 
     public function render()
     {
-        return view('livewire.views.home');
+        return view('livewire.views.shop.products.all');
     }
 }

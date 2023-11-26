@@ -1,5 +1,3 @@
-<div class="hero__search__form">
-    <form>
-        <input type="text" placeholder="Search for a product">
-    </form>
+<div class="hero__search__form" style="background-color:bisque;width:100%;">
+    <input type="text" placeholder="Search for a product">
 </div>

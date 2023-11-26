@@ -11,8 +11,11 @@
 
                 <div class="col-lg-9">
                     <div class="hero__search">
-
-                        <livewire:components.search-input />
+                        <div class="hero__search__form">
+                            <form>
+                                <input style="width:100%;" type="text" placeholder="Search for a product">
+                            </form>
+                        </div>
 
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
@@ -39,7 +42,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    <h6><span>{{ count($items) }}</span> Product(s) found</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -53,31 +56,33 @@
 
                     <div class="row">
                         @unless (count($items) > 0)
-                            <h1>No items found in store</h1>
+                            <h3>No items found in store</h3>
                         @else
                             @foreach ($items as $item)
-                                <div wire:key="{{ $item->item_id }}" class="col-lg-3 col-md-6 col-sm-6">
+                                <div wire:key="{{ $item->product_id }}" class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="product__item" style="cursor: pointer;"
-                                        wire:click="viewItem({{ $item->item_id }})">
-                                        <div class="product__item__pic set-bg" data-setbg="{{ asset($item->image) }}">
-                                            <ul class="product__item__pic__hover">
-                                                <li>
-                                                    <i wire:click.prevent="addToWishlist()" class="fa fa-heart"></i>
-                                                </li>
-                                                <li>
-                                                    <i wire:click="addToCart({{ $item->item_id }})"
-                                                        class="fa fa-shopping-cart">
-                                                    </i>
-                                                </li>
-                                            </ul>
+                                        wire:click="viewProduct({{ $item->product_id }})">
+
+                                        <div wire:loading wire:target="addToCart({{ $item->product_id }})">
+                                            <livewire:components.loader />
                                         </div>
+
+                                        <div class="product__item__pic set-bg"
+                                            data-setbg="{{ asset('storage/' . $item->image) }}">
+                                        </div>
+
+                                        <span style="color:{{ $item->qty == 0 ? 'red' : 'green' }};font-weight:bold;">
+                                            {{ $item->qty == 0 ? 'Out of stock' : 'In stock' }}
+                                        </span>
 
                                         <div class="product__item__text">
                                             <h6>
-                                                <a href="#">{{ $item->name }}</a>
+                                                <a>{{ $item->name }}</a>
+
                                             </h6>
 
-                                            <h5>R{{ $item->price }}</h5>
+                                            <h5 style="color: {{ $item->user_id ? null : 'red' }}">
+                                                {{ $item->user_id ? 'R' . $item->price : 'Display product' }}</h5>
                                         </div>
                                     </div>
                                 </div>

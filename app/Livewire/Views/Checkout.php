@@ -49,7 +49,7 @@ class Checkout extends Component
         $this->cartItemsTotal = 0;
 
         foreach ($this->cartItems as $cartItem) {
-            $this->cartItemsTotal += $cartItem->item->price * $cartItem->qty;
+            $this->cartItemsTotal += $cartItem->product->price * $cartItem->qty;
         }
     }
 
@@ -79,9 +79,9 @@ class Checkout extends Component
             foreach ($this->cartItems as $cartItem) {
                 $orderItem = OrderItem::create([
                     'order_id' => $order->order_id,
-                    'item_id' => $cartItem->item->item_id,
+                    'product_id' => $cartItem->product->product_id,
                     'qty' => $cartItem->qty,
-                    'amount' => $cartItem->qty * $cartItem->item->price
+                    'amount' => $cartItem->qty * $cartItem->product->price
                 ]);
 
                 if ($orderItem) {

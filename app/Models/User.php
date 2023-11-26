@@ -26,6 +26,7 @@ class User extends Authenticatable
         'privileges',
         'email',
         'password',
+        'can_sell'
     ];
 
     /**

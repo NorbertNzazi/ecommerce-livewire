@@ -23,25 +23,21 @@
 
                             @if (Auth::check())
                                 <div class="header__top__right__auth flex">
-                                    <a href="{{ route('auth') }}">
+                                    <a href="{{ route('login') }}">
                                         <i class="fa fa-user"></i>
                                         {{ Auth::user()->name }}
                                     </a>
                                 </div>
                                 |
                                 <div class="header__top__right__auth flex">
-                                    <a href="#" style="font-weight: bold;"> Logout</a>
+                                    <a style="font-weight: bold;cursor: pointer;" wire:click="logout()"> Logout</a>
                                 </div>
                             @else
                                 <div class="header__top__right__auth flex">
-                                    <a href="{{ route('auth') }}">
+                                    <a href="{{ route('login') }}">
                                         <i class="fa fa-user"></i>
-                                        Login
+                                        Login/Register
                                     </a>
-                                </div>
-                                |
-                                <div class="header__top__right__auth flex">
-                                    <a href="#"> Register</a>
                                 </div>
                             @endif
 
@@ -66,12 +62,12 @@
                                 <li class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }}"><a
                                         href="{{ route('home') }}">Home</a></li>
                                 <li><a href="./shop-grid.html">Notifications</a></li>
-                                <li><a href="#">Menu</a>
+                                <li><a>Menu</a>
                                     <ul class="header__menu__dropdown">
-                                        <li><a href="./shop-details.html">My Orders</a></li>
-                                        <li><a href="./shoping-cart.html">Customer Orders</a></li>
-                                        <li><a href="./checkout.html">Inventory</a></li>
-                                        <li><a href="./blog-details.html">Store Blog</a></li>
+                                        <li><a href="{{ route('user-orders') }}">My Orders</a></li>
+                                        {{-- <li><a href="./shoping-cart.html">Customer Orders</a></li> --}}
+                                        <li><a href="{{ route('inventory') }}">Inventory</a></li>
+                                        {{-- <li><a href="./blog-details.html">Store Blog</a></li> --}}
                                     </ul>
                                 </li>
 
@@ -85,9 +81,15 @@
                     <div class="col-lg-3">
                         <div class="header__cart">
                             <ul>
-                                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                                <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i>
-                                        <span>{{ count($cartItems) }}</span></a></li>
+                                {{-- <li>
+                                    <a style="color:black;font-weight:bold;cursor: pointer;" wire:click=sell()>Sell</a>
+                                </li> --}}
+                                <li>
+                                    <a href="{{ route('cart') }}">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        <span>{{ count($cartItems) }}</span>
+                                    </a>
+                                </li>
                             </ul>
                             <div class="header__cart__price">Cart total: <span>R{{ $cartItemsTotal }}</span></div>
 

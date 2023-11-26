@@ -9,10 +9,9 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="checkout__order">
-                        <h4 style="margin-top: 0px;color:green;">Your payment was successful, and your order has been
-                            created</h4>
+                        <h4 style="margin-top: 0px;color:green;">Your payment was successful</h4>
 
-                        <span>A payment for order receipt has been sent to your email</span>
+                        <span>Kindly find the receipt, that has been sent to your email</span>
                     </div>
                 </div>
 

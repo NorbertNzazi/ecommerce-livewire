@@ -14,6 +14,9 @@
             <div class="checkout__form">
                 <h3>Store In</h3>
 
+                <div wire:loading wire:target="checkEmail()">
+                    <livewire:components.loader />
+                </div>
 
                 @if (!$emailProcessed)
                     <form wire:submit.prevent="checkEmail">
@@ -21,7 +24,7 @@
                             <div class="col-lg-3 col-md-12">
                             </div>
 
-                            <div class="col-lg-6 col-md-12 checkout__order" style="background-color: #000;">
+                            <div class="checkout__order" style="background-color: #cfcfcf;border-radius:5px;width:50%;">
 
                                 {{-- Email address --}}
                                 <div class="checkout__input">
@@ -39,7 +42,7 @@
                                 {{-- Verify email existence --}}
                                 @if ($email)
                                     <div class="checkout__input">
-                                        <button type="submit" class="site-btn" style="background-color: #e100ff;">
+                                        <button type="submit" class="site-btn" style="background-color: #000;">
                                             Submit
                                         </button>
                                     </div>
@@ -63,8 +66,8 @@
                                 <div class="col-lg-3 col-md-12">
                                 </div>
 
-                                <div class="col-lg-6 col-md-12 checkout__order" style="background-color: #000;">
-
+                                <div class="checkout__order"
+                                    style="background-color: #cfcfcf;border-radius:5px;width:50%;">
 
                                     {{-- Email address --}}
                                     <div class="checkout__input">
@@ -93,7 +96,7 @@
 
                                     @if ($password && $email)
                                         <div class="checkout__input">
-                                            <button type="submit" class="site-btn" style="background-color: #e100ff;">
+                                            <button type="submit" class="site-btn" style="background-color: #000;">
                                                 {{ $auth == 'login' ? 'Login' : 'Register' }}
                                             </button>
                                         </div>
@@ -110,15 +113,17 @@
                                 <div class="col-lg-3 col-md-12">
                                 </div>
 
-                                <div class="col-lg-6 col-md-12 checkout__order">
-
+                                <div class="checkout__order"
+                                    style="background-color: #cfcfcf;border-radius:5px;width:50%;">
 
                                     {{-- Email address --}}
                                     <div class="checkout__input">
-                                        <p>Email Address
+                                        <p>Email
                                             <span>*
                                                 @error('email')
-                                                    {{ $message }}
+                                                    @include('components.field-error', [
+                                                        'message' => $message,
+                                                    ])
                                                 @enderror
                                             </span>
                                         </p>
@@ -126,21 +131,31 @@
                                     </div>
 
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="checkout__input">
-                                                <p>Name<span>*</span></p>
-                                                <input type="text" wire:model.live="name">
-                                            </div>
-                                        </div>
+                                    <div class="checkout__input">
+                                        <p>Name
+                                            <span>*
+                                                @error('name')
+                                                    @include('components.field-error', [
+                                                        'message' => $message,
+                                                    ])
+                                                @enderror
+                                            </span>
+                                        </p>
+                                        <input type="text" wire:model.live="name">
+                                    </div>
 
 
-                                        <div class="col-lg-6">
-                                            <div class="checkout__input">
-                                                <p>Surname<span>*</span></p>
-                                                <input type="text" wire:model.live="surname">
-                                            </div>
-                                        </div>
+                                    <div class="checkout__input">
+                                        <p>Surname
+                                            <span>*
+                                                @error('surname')
+                                                    @include('components.field-error', [
+                                                        'message' => $message,
+                                                    ])
+                                                @enderror
+                                            </span>
+                                        </p>
+                                        <input type="text" wire:model.live="surname">
                                     </div>
 
 
@@ -149,11 +164,28 @@
                                         <p>Password
                                             <span>*
                                                 @error('password')
-                                                    {{ $message }}
+                                                    @include('components.field-error', [
+                                                        'message' => $message,
+                                                    ])
                                                 @enderror
                                             </span>
                                         </p>
                                         <input type="password" wire:model.live="password">
+                                    </div>
+
+
+                                    {{-- Password Confirmation --}}
+                                    <div class="checkout__input">
+                                        <p>Password Confirmation
+                                            <span>*
+                                                @error('passwordConfirmation')
+                                                    @include('components.field-error', [
+                                                        'message' => $message,
+                                                    ])
+                                                @enderror
+                                            </span>
+                                        </p>
+                                        <input type="password" wire:model.live="passwordConfirmation">
                                     </div>
 
                                     @if ($password && $email && $name && $surname)

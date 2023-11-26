@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Access extends Component
 {
-    public $name, $surname, $email, $password, $auth, $valid, $emailProcessed;
+    public $name, $surname, $email, $password, $passwordConfirmation, $auth, $valid, $emailProcessed;
 
     public function render()
     {
@@ -62,6 +62,7 @@ class Access extends Component
         $this->validate([
             'email' => ['required', 'email', Rule::unique('users')],
             'password' => ['required', 'string', 'min:8'],
+            'passwordConfirmation' => ['required', 'same:password'],
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
         ]);

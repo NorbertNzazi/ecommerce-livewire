@@ -14,6 +14,11 @@ class Sidebar extends Component
         $this->categories = Categories::all();
     }
 
+    public function setCategory()
+    {
+        //
+    }
+
     public function render()
     {
         return view('livewire.components.sidebar');

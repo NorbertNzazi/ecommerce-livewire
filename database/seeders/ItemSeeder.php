@@ -32,6 +32,7 @@ class ItemSeeder extends Seeder
         for ($i = 0; $i < 12; $i++) {
             $item = [
                 'name' => $itemName[$i],
+                'qty' => fake()->numberBetween(0, 100),
                 'price' => fake()->numberBetween(5, 100),
                 'description' => fake()->sentence('10'),
                 'image' => 'img/product/product-' . ($i + 1) . '.jpg'

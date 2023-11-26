@@ -8,7 +8,7 @@
             <li>No categories</li>
         @else
             @foreach ($categories as $category)
-                <li wire:click="$parent.setCategory({{ $category }})">{{ $category->name }}</li>
+                <li wire:click="setCategory({{ $category }})">{{ $category->name }}</li>
             @endforeach
         @endunless
     </ul>

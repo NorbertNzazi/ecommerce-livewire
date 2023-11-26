@@ -30,11 +30,11 @@
                                             </div>
 
                                             <td class="shoping__cart__item">
-                                                <img src="{{ asset($cartItem->item->image) }}" alt="">
-                                                <h5>{{ $cartItem->item->name }}</h5>
+                                                <img src="{{ asset($cartItem->product->image) }}" alt="">
+                                                <h5>{{ $cartItem->product->name }}</h5>
                                             </td>
                                             <td class="shoping__cart__price">
-                                                R{{ $cartItem->item->price }}
+                                                R{{ $cartItem->product->price }}
                                             </td>
                                             <td class="shoping__cart__quantity">
                                                 <div class="quantity">
@@ -45,7 +45,7 @@
                                                 </div>
                                             </td>
                                             <td class="shoping__cart__total">
-                                                R{{ $cartItem->item->price * $cartItem->qty }}
+                                                R{{ $cartItem->product->price * $cartItem->qty }}
                                             </td>
 
                                             <td class="shoping__cart__item__close">
