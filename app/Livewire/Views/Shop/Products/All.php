@@ -10,16 +10,11 @@ use Livewire\Attributes\Renderless;
 
 class All extends Component
 {
-
     public $items;
 
     public function mount()
     {
-        if (!Auth::check()) {
-            return redirect()->route('auth');
-        }
-
-        $this->items = Product::where('user_id', '!=', Auth::user()->user_id)->get();
+        $this->items = Auth::check() ? Product::where('user_id', '!=', Auth::user()->user_id)->get() : Product::all();
     }
 
     #[Renderless]

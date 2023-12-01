@@ -51,7 +51,7 @@ class Access extends Component
         $user = Auth::attempt(['email' => $this->email, 'password' => $this->password]);
 
         if ($user) {
-            return redirect()->route('home');
+            return redirect()->route(Auth::user()->privileges == 'admin' ? 'admin-home' : 'home');
         }
 
         return back()->with('error', 'Invalid credentials');
@@ -77,7 +77,7 @@ class Access extends Component
 
             Auth::login($user);
 
-            return redirect()->route('home');
+            return redirect()->route(Auth::user()->privileges == 'admin' ? 'admin-home' : 'home');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }

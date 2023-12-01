@@ -27,7 +27,7 @@ class Inventory extends Component
     public function getCount($for)
     {
         if (!Auth::check()) {
-            return redirect()->route('auth');
+            return redirect()->route('login');
         }
 
         switch ($for) {

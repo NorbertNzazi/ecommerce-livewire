@@ -7,7 +7,9 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> support@store-in.co.za</li>
+                                <li>
+                                    <i class="fa fa-envelope"></i> support@store-in.co.za
+                                </li>
                                 <li>Location, si laa</li>
                             </ul>
                         </div>
@@ -15,10 +17,10 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <a href><i class="fa fa-facebook"></i></a>
+                                <a href><i class="fa fa-twitter"></i></a>
+                                <a href><i class="fa fa-linkedin"></i></a>
+                                <a href><i class="fa fa-pinterest-p"></i></a>
                             </div>
 
                             @if (Auth::check())
@@ -70,20 +72,12 @@
                                         {{-- <li><a href="./blog-details.html">Store Blog</a></li> --}}
                                     </ul>
                                 </li>
-
-
-
-                                {{-- <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="./contact.html">My Items</a></li> --}}
                             </ul>
                         </nav>
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
                             <ul>
-                                {{-- <li>
-                                    <a style="color:black;font-weight:bold;cursor: pointer;" wire:click=sell()>Sell</a>
-                                </li> --}}
                                 <li>
                                     <a href="{{ route('cart') }}">
                                         <i class="fa fa-shopping-bag"></i>
@@ -92,7 +86,6 @@
                                 </li>
                             </ul>
                             <div class="header__cart__price">Cart total: <span>R{{ $cartItemsTotal }}</span></div>
-
                         </div>
                     </div>
                 </div>

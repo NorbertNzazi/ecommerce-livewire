@@ -26,7 +26,7 @@ class One extends Component
     public function addToCart()
     {
         if (!Auth::check()) {
-            return redirect()->route("auth");
+            return redirect()->route("login");
         }
 
         try {

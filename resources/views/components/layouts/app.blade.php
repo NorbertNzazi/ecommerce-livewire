@@ -23,7 +23,7 @@
 
 <body>
     <!-- Humberger Begin -->
-    <livewire:components.hamburger />
+    {{-- <livewire:components.hamburger /> --}}
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->

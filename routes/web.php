@@ -1,7 +1,11 @@
 <?php
 
+use App\Livewire\Views\Admin\Home;
+use App\Livewire\Views\Admin\NewUser;
+use App\Livewire\Views\Admin\Products;
+use App\Livewire\Views\Admin\User;
+use App\Livewire\Views\Admin\Users;
 use App\Livewire\Views\Cart;
-use App\Livewire\Views\Home;
 use App\Livewire\Views\Item;
 use App\Livewire\Views\Checkout;
 use App\Livewire\Views\Inventory;
@@ -54,6 +58,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventory/products/{id}', InventoryProduct::class)->name('inventory-product');
     Route::get('/inventory/products', InventoryProducts::class)->name('inventory-products');
     Route::get('/inventory/pay', Pay::class)->name('inventory-pay');
+
+
+    Route::get('/admin/home', Home::class)->name('admin-home');
+    Route::get('/admin/users', Users::class)->name('admin-users');
+    Route::get('/admin/users/new', NewUser::class)->name('admin-new-user');
+    Route::get('/admin/users/{id}', User::class)->name('admin-user');
+
+    Route::get('/admin/products', Products::class)->name('admin-products');
+    Route::get('/admin/users/new', NewUser::class)->name('admin-new-user');
+    Route::get('/admin/users/{id}', User::class)->name('admin-user');
 });
 
 Route::middleware(['guest'])->group(function () {
