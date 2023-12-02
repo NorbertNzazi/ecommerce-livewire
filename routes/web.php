@@ -73,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users/{id}', User::class)->name('admin-user');
 
     Route::get('/admin/products', Products::class)->name('admin-products');
-    Route::get('/admin/products/new', NewUser::class)->name('admin-new-product');
     Route::get('/admin/products/{id}', Product::class)->name('admin-product');
 
     Route::get('/admin/categories', Categories::class)->name('admin-categories');
