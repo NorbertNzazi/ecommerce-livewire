@@ -19,11 +19,10 @@ class Home extends Component
     {
         $this->cards = [
             ['title' => 'Users', 'routeTo' => 'admin-users', 'count' => count(User::all())],
-            ['title' => 'Products', 'routeTo' => 'inventory-products', 'count' => count(Product::all())],
-            ['title' => 'Orders', 'routeTo' => 'inventory-orders', 'count' => count(Order::all())],
-            ['title' => 'Cart Items', 'routeTo' => 'inventory-orders', 'count' => count(CartItem::all())],
-            ['title' => 'Categories', 'routeTo' => 'inventory-orders', 'count' => count(Categories::all())],
-            ['title' => 'Payments', 'routeTo' => 'inventory-orders', 'count' => count(Payment::all())],
+            ['title' => 'Products', 'routeTo' => 'admin-products', 'count' => count(Product::all())],
+            ['title' => 'Orders', 'routeTo' => 'admin-orders', 'count' => count(Order::all())],
+            ['title' => 'Categories', 'routeTo' => 'admin-categories', 'count' => count(Categories::all())],
+            ['title' => 'Payments', 'routeTo' => 'admin-payments', 'count' => count(Payment::all())],
         ];
     }
 

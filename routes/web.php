@@ -1,7 +1,14 @@
 <?php
 
+use App\Livewire\Views\Admin\CartItems;
+use App\Livewire\Views\Admin\Categories;
+use App\Livewire\Views\Admin\Category;
 use App\Livewire\Views\Admin\Home;
 use App\Livewire\Views\Admin\NewUser;
+use App\Livewire\Views\Admin\Order as AdminOrder;
+use App\Livewire\Views\Admin\Orders as AdminOrders;
+use App\Livewire\Views\Admin\Payments;
+use App\Livewire\Views\Admin\Product;
 use App\Livewire\Views\Admin\Products;
 use App\Livewire\Views\Admin\User;
 use App\Livewire\Views\Admin\Users;
@@ -66,8 +73,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users/{id}', User::class)->name('admin-user');
 
     Route::get('/admin/products', Products::class)->name('admin-products');
-    Route::get('/admin/users/new', NewUser::class)->name('admin-new-user');
-    Route::get('/admin/users/{id}', User::class)->name('admin-user');
+    Route::get('/admin/products/new', NewUser::class)->name('admin-new-product');
+    Route::get('/admin/products/{id}', Product::class)->name('admin-product');
+
+    Route::get('/admin/categories', Categories::class)->name('admin-categories');
+    Route::get('/admin/categories/{id}', Category::class)->name('admin-category');
+
+    Route::get('/admin/orders', AdminOrders::class)->name('admin-orders');
+    Route::get('/admin/orders/{id}', AdminOrder::class)->name('admin-order');
+
+    Route::get('/admin/payments', Payments::class)->name('admin-payments');
 });
 
 Route::middleware(['guest'])->group(function () {

@@ -11,7 +11,6 @@ class Header extends Component
 {
     public $cartItems, $cartItemsTotal, $user;
 
-
     public function mount()
     {
         //
@@ -43,6 +42,11 @@ class Header extends Component
         foreach ($this->cartItems as $cartItem) {
             $this->cartItemsTotal += $cartItem->product->price * $cartItem->qty;
         }
+    }
+
+    public function goto()
+    {
+        return redirect()->route(Auth::user()->privileges == 'admin' ? 'admin-home' : 'home');
     }
 
     public function logout()

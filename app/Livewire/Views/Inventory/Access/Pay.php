@@ -3,16 +3,20 @@
 namespace App\Livewire\Views\Inventory\Access;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Payment;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Dompdf\Dompdf as PDF;
 
 class Pay extends Component
 {
-    public $accountHolder, $cardNumber, $cardCvv, $cardExpiry;
+    public $accountHolder, $cardNumber, $cardCvv, $cardExpiry, $amount;
 
     public function mount()
     {
         //
+        $this->amount = 1500;
     }
 
     public function pay()
@@ -26,13 +30,23 @@ class Pay extends Component
         ]);
 
         try {
-            User::find(Auth::user()->user_id)->update([
-                'can_sell' => true
+            $payment = Payment::create([
+                'user_id' => Auth::user()->user_id,
+                'transaction_id' => Str::random(20),
+                'description' => 'Inventory access',
+                'amount' => $this->amount,
             ]);
 
-            $this->reset('accountHolder', 'cardNumber', 'cardCvv', 'cardExpiry');
+            if ($payment) {
 
-            return redirect()->route('inventory')->with('success', 'Payment successful. Welcome to your inventory');
+                User::find(Auth::user()->user_id)->update([
+                    'can_sell' => true
+                ]);
+
+                $this->reset('accountHolder', 'cardNumber', 'cardCvv', 'cardExpiry');
+
+                return redirect()->route('inventory')->with('success', 'Payment successful. Welcome to your inventory');
+            }
         } catch (\Throwable $th) {
             dd($th);
         }

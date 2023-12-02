@@ -6,6 +6,7 @@ use App\Models\CartItem;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Payment;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -68,29 +69,38 @@ class Checkout extends Component
         ]);
 
         try {
-            $order = Order::create([
+            $payment = Payment::create([
+                'user_id' => Auth::user()->user_id,
                 'transaction_id' => Str::random(20),
-                'shipping' => $this->shipment,
-                'amount' => $this->cartItemsTotal,
-                'status' => 'paid',
-                'user_id' => Auth::user()->user_id
+                'description' => 'Order checkout'
             ]);
 
-            foreach ($this->cartItems as $cartItem) {
-                $orderItem = OrderItem::create([
-                    'order_id' => $order->order_id,
-                    'product_id' => $cartItem->product->product_id,
-                    'qty' => $cartItem->qty,
-                    'amount' => $cartItem->qty * $cartItem->product->price
+            if ($payment) {
+                
+                $order = Order::create([
+                    'shipping' => $this->shipment,
+                    'amount' => $this->cartItemsTotal,
+                    'status' => 'paid',
+                    'payment_id' => $payment->payment_id,
+                    'user_id' => Auth::user()->user_id
                 ]);
 
-                if ($orderItem) {
-                    CartItem::destroy($cartItem->cart_item_id);
-                }
-            }
+                foreach ($this->cartItems as $cartItem) {
+                    $orderItem = OrderItem::create([
+                        'order_id' => $order->order_id,
+                        'product_id' => $cartItem->product->product_id,
+                        'qty' => $cartItem->qty,
+                        'amount' => $cartItem->qty * $cartItem->product->price
+                    ]);
 
-            self::initializeCart();
-            $this->dispatch('updatedCart');
+                    if ($orderItem) {
+                        CartItem::destroy($cartItem->cart_item_id);
+                    }
+                }
+
+                self::initializeCart();
+                $this->dispatch('updatedCart');
+            }
 
             return redirect()->route('payment-response', ['status' => 'success']);
         } catch (\Throwable $th) {

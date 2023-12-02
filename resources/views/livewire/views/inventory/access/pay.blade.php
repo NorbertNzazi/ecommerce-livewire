@@ -75,7 +75,7 @@
                                 <button type="submit" class="site-btn" style="background-color: black;">Pay</button>
 
                                 <div class="checkout__order__products mt-5">Marketplace Access</div>
-                                <div class="checkout__order__total">Total <span>R1500</span></div>
+                                <div class="checkout__order__total">Total <span>{{ $amount }}</span></div>
                             </div>
                         </div>
                     </div>
