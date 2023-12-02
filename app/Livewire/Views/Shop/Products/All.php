@@ -40,7 +40,7 @@ class All extends Component
         }
     }
 
-    public function viewProduct($id)
+    public function viewItem($id)
     {
         return redirect()->route('product', ['id' => $id]);
     }
