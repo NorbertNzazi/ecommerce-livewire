@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="row">
-                        <div wire:loading >
+                        <div wire:loading>
                             <livewire:components.loader />
                         </div>
 
@@ -50,7 +50,7 @@
                                     <div class="product__item">
 
                                         <div class="product__item__pic set-bg"
-                                            data-setbg="{{ asset('storage/' . $orderItem->product->image) }}">
+                                            data-setbg="{{ asset($orderItem->product->image) }}">
                                         </div>
 
                                         <div class="product__item__text">
