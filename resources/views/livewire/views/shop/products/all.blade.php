@@ -61,14 +61,9 @@
                             @foreach ($items as $item)
                                 <div wire:key="{{ $item->product_id }}" class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="product__item" style="cursor: pointer;"
-                                        wire:click="viewProduct({{ $item->product_id }})">
+                                        wire:click="viewItem({{ $item->product_id }})">
 
-                                        <div wire:loading wire:target="addToCart({{ $item->product_id }})">
-                                            <livewire:components.loader />
-                                        </div>
-
-                                        <div class="product__item__pic set-bg"
-                                            data-setbg="{{ asset('storage/' . $item->image) }}">
+                                        <div class="product__item__pic set-bg" data-setbg="{{ asset($item->image) }}">
                                         </div>
 
                                         <span style="color:{{ $item->qty == 0 ? 'red' : 'green' }};font-weight:bold;">
