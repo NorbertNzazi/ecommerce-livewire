@@ -25,12 +25,6 @@
                                     wire:model.live="search">
                             </form>
                         </div>
-
-                        <a href="{{ route('admin-new-user') }}" class="d-flex align-items-center justify-content-center"
-                            style="padding-left:10px;background-color:black;width:200px;margin-left:10px;margin-bottom:5px;margin-top:5px;color:white;">
-                            <i class="fa fa-plus" style="color: white;margin-right:10px;"></i>
-                            Add new
-                        </a>
                     </div>
 
                     <div class="filter__item">
