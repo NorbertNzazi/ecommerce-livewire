@@ -72,7 +72,8 @@ class Checkout extends Component
             $payment = Payment::create([
                 'user_id' => Auth::user()->user_id,
                 'transaction_id' => Str::random(20),
-                'description' => 'Order checkout'
+                'description' => 'Order checkout',
+                'amount' =>$this->cartItemsTotal
             ]);
 
             if ($payment) {
