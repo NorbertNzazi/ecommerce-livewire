@@ -17,16 +17,13 @@
                         <div class="product__details__pic">
                             <div class="product__details__pic__item" style="width: 250px;">
                                 <img class="product__details__pic__item--large"
-                                    src="{{ $image ? $image->temporaryUrl() : asset('storage/' . $item->image) }}"
-                                    alt="">
+                                    src="{{ $image ? $image->temporaryUrl() : asset($item->image) }}" alt="">
                             </div>
                             <input type="file" accept=".jpg, .jpeg, .png"
                                 style="background-color: #000; border-radius: 10px; color: #fff;"
                                 wire:model.live="image">
                         </div>
                     </div>
-
-                    {{-- $image ? $image->temporaryUrl() : $imagePlaceholder --}}
 
                     <div class="col-lg-6 col-md-6">
                         <div wire:loading wire:target="saveProduct()">
