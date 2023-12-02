@@ -25,7 +25,7 @@ class Create extends Component
             'price' => ['required', 'numeric'],
             'stock' => ['required', 'integer'],
             'description' => ['required', 'string'],
-            'image' => 'image|mimes:jpg,jpeg,png|max:1024',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:1024',
         ]);
 
         try {
@@ -38,7 +38,7 @@ class Create extends Component
             ]);
 
             $product->update([
-                'image' => $this->image->storeAs('img/product-images', $product->product_id . '.' . $this->image->getClientOriginalExtension(), 'public')
+                'image' => $this->image->storeAs('img/product-images', $product->product_id . '.' . $this->image->getClientOriginalExtension(), 'image')
             ]);
 
             session()->flash('success', 'Product added successfully');
