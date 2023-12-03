@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDF\Receipt;
 use App\Livewire\Views\Admin\CartItems;
 use App\Livewire\Views\Admin\Categories;
 use App\Livewire\Views\Admin\Category;
@@ -82,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/orders/{id}', AdminOrder::class)->name('admin-order');
 
     Route::get('/admin/payments', Payments::class)->name('admin-payments');
+
+    Route::get('/reports/receipt', [Receipt::class, 'render']);
 });
 
 Route::middleware(['guest'])->group(function () {

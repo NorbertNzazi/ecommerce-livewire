@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Views\Inventory\Access;
 
+use App\Mail\ReceiptMail;
 use App\Models\User;
 use App\Models\Payment;
 use Livewire\Component;
+use Dompdf\Dompdf as PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Dompdf\Dompdf as PDF;
+use Illuminate\Support\Facades\Mail;
 
 class Pay extends Component
 {
@@ -42,6 +44,16 @@ class Pay extends Component
                 User::find(Auth::user()->user_id)->update([
                     'can_sell' => true
                 ]);
+
+                $paymentData = [
+                    'name' => Auth::user()->name . ' ' . Auth::user()->surname,
+                    'transaction_id' => $payment->transaction_id,
+                    'description' => 'Vendor Inventory Access',
+                    'date' => now(),
+                    'amount' => $payment->amount,
+                ];
+
+                Mail::to(Auth::user()->email)->send(new ReceiptMail($paymentData));
 
                 $this->reset('accountHolder', 'cardNumber', 'cardCvv', 'cardExpiry');
 

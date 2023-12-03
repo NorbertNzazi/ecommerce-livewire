@@ -55,8 +55,9 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo" style="cursor: pointer;">
-                            <img class="product__details__pic__item--large" src="{{ asset('img/profile.png') }}"
-                                alt="" style="width: 50px; height: auto; object-fit: cover;"
+                            <img class="product__details__pic__item--large" src="{{ asset('img/logo.jpg') }}"
+                                alt=""
+                                style="width: 60px; height: 60px; object-fit: cover;border-radius:10000px;border-style:dotted;"
                                 wire:click="goto()">
                         </div>
                     </div>

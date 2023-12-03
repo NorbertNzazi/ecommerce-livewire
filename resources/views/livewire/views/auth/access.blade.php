@@ -1,22 +1,17 @@
 <div>
     <!-- Checkout Section Begin -->
-    <section class="checkout spad">
+    <section class="hero">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-end">
-                    <h6>
-                        Forgot your password? <a href="#">Click here</a> to
-                        request a reset password link
-                    </h6>
-                </div>
+
+            <div wire:loading wire:target="checkEmail()">
+                <livewire:components.loader />
             </div>
 
-            <div class="checkout__form">
-                <h3>Store In</h3>
-
-                <div wire:loading wire:target="checkEmail()">
-                    <livewire:components.loader />
-                </div>
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-5" style="text-align:center;">
+                    Forgot your password? <a href="#">Click here</a> to
+                    request a reset password link
+                </h6>
 
                 @if (!$emailProcessed)
                     <form wire:submit.prevent="checkEmail">
@@ -24,17 +19,17 @@
                             <div class="col-lg-3 col-md-12">
                             </div>
 
-                            <div class="checkout__order" style="background-color: #cfcfcf;border-radius:5px;width:50%;">
+                            <div class="checkout__order" style="background-color: #f6f6f6;border-radius:5px;width:50%;">
 
                                 {{-- Email address --}}
                                 <div class="checkout__input">
-                                    <p>Email Address
+                                    <h6 style="color: #000;">Email Address
                                         <span>*
                                             @error('email')
                                                 {{ $message }}
                                             @enderror
                                         </span>
-                                    </p>
+                                    </h6>
                                     <input type="email" wire:model.live="email">
                                 </div>
 
@@ -49,7 +44,7 @@
                                 @endif
 
 
-                                <p>
+                                <p style="color: #000;font-weight:lighter;">
                                     Please enter your email address to continue
                                 </p>
 
@@ -114,11 +109,11 @@
                                 </div>
 
                                 <div class="checkout__order"
-                                    style="background-color: #cfcfcf;border-radius:5px;width:50%;">
+                                    style="background-color: #fff;border-radius:5px;width:50%;">
 
                                     {{-- Email address --}}
                                     <div class="checkout__input">
-                                        <p>Email
+                                        <p style="color: #000;font-weight:lighter;">Email
                                             <span>*
                                                 @error('email')
                                                     @include('components.field-error', [
@@ -132,7 +127,7 @@
 
 
                                     <div class="checkout__input">
-                                        <p>Name
+                                        <p style="color: #000;font-weight:lighter;">Name
                                             <span>*
                                                 @error('name')
                                                     @include('components.field-error', [
@@ -146,7 +141,7 @@
 
 
                                     <div class="checkout__input">
-                                        <p>Surname
+                                        <p style="color: #000;font-weight:lighter;">Surname
                                             <span>*
                                                 @error('surname')
                                                     @include('components.field-error', [
@@ -161,7 +156,7 @@
 
                                     {{-- Password --}}
                                     <div class="checkout__input">
-                                        <p>Password
+                                        <p style="color: #000;font-weight:lighter;">Password
                                             <span>*
                                                 @error('password')
                                                     @include('components.field-error', [
@@ -176,7 +171,7 @@
 
                                     {{-- Password Confirmation --}}
                                     <div class="checkout__input">
-                                        <p>Password Confirmation
+                                        <p style="color: #000;font-weight:lighter;">Password Confirmation
                                             <span>*
                                                 @error('passwordConfirmation')
                                                     @include('components.field-error', [
@@ -188,7 +183,7 @@
                                         <input type="password" wire:model.live="passwordConfirmation">
                                     </div>
 
-                                    @if ($password && $email && $name && $surname)
+                                    @if ($password && $email && $name && $surname && $passwordConfirmation)
                                         <div class="checkout__input">
                                             <button type="submit" class="site-btn" style="background-color: #000;">
                                                 Submit

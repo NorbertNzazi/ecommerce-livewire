@@ -12,14 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('product_id');
+            $table->integer('product_id')->autoIncrement();
             $table->integer('user_id')->nullable();
+            $table->integer('category_id');
             $table->string('name');
             $table->integer('qty');
             $table->decimal('price', 10, 2);
             $table->string('description');
             $table->string('image')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

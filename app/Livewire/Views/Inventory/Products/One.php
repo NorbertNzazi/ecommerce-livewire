@@ -42,7 +42,7 @@ class One extends Component
                 'qty' => $this->stock,
                 'user_id' => Auth::user()->user_id,
                 'description' => $this->description,
-                'image' => $this->image ? $this->image->storeAs('img/product-images', $this->item->product_id . '.' . $this->image->getClientOriginalExtension(), 'public') : $this->item->image,
+                'image' => $this->image ? $this->image->storeAs('img/product-images', $this->item->product_id . '.' . $this->image->getClientOriginalExtension(), 'image') : $this->item->image,
             ]);
 
             session()->flash('success', 'Product updated successfully');

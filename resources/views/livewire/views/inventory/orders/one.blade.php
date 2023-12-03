@@ -48,7 +48,7 @@
                                     <div class="product__item">
 
                                         <div class="product__item__pic set-bg"
-                                            data-setbg="{{ asset('storage/' . $orderItem['image']) }}">
+                                            data-setbg="{{ asset($orderItem['image']) }}">
                                         </div>
 
                                         <div class="product__item__text">
