@@ -9,7 +9,7 @@
 
             <div class="d-flex flex-column justify-content-center">
                 <h6 class="mb-5" style="text-align:center;">
-                    Forgot your password? <a href="#">Click here</a> to
+                    Forgot your password? <a href="{{ route('request-reset') }}">Click here</a> to
                     request a reset password link
                 </h6>
 
@@ -56,6 +56,21 @@
                     </form>
                 @else
                     @if ($auth == 'login')
+
+                        @if (Session::has('error'))
+                            @include('components.alert', [
+                                'message' => Session::get('error'),
+                                'type' => 'error',
+                            ])
+                        @endif
+
+                        @if (Session::has('success'))
+                            @include('components.alert', [
+                                'message' => Session::get('success'),
+                                'type' => 'success',
+                            ])
+                        @endif
+
                         <form wire:submit.prevent="login">
                             <div class="row flex justify-center align-center">
                                 <div class="col-lg-3 col-md-12">

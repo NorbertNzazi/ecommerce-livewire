@@ -14,11 +14,14 @@ use App\Livewire\Views\Admin\Product;
 use App\Livewire\Views\Admin\Products;
 use App\Livewire\Views\Admin\User;
 use App\Livewire\Views\Admin\Users;
+use App\Livewire\Views\Auth\RequestResponse;
 use App\Livewire\Views\Cart;
 use App\Livewire\Views\Item;
 use App\Livewire\Views\Checkout;
 use App\Livewire\Views\Inventory;
 use App\Livewire\Views\Auth\Access;
+use App\Livewire\Views\Auth\NewPassword;
+use App\Livewire\Views\Auth\RequestReset;
 use App\Livewire\Views\Inventory\Access\Pay;
 use App\Livewire\Views\InventoryItem;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +96,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['guest'])->group(function () {
     // Routes that should be accessible only to guests
     Route::get('/auth', Access::class)->name('login');
+    Route::get('/request-reset', RequestReset::class)->name('request-reset');
+    Route::get('/request-response', RequestResponse::class)->name('request-response');
+
+    Route::get('/auth/new-password', NewPassword::class)->name('new-password');
 });
 
 Route::get('/product/{id}', ShopProduct::class)->name('product');
