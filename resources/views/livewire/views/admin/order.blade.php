@@ -28,13 +28,6 @@
                                 Export (.pdf)
                             </button>
 
-                            |
-
-                            <button class="site-btn" style="background-color: red;font-weight:500;"
-                                wire:click="deleteOrder()" wire:confirm="Are you sure you want to delete this order?">
-                                Delete
-                            </button>
-
                         </div>
                     </div>
 
