@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Access extends Component
 {
-    public $name, $surname, $email, $password, $passwordConfirmation, $auth, $valid, $emailProcessed;
+    public $name, $surname, $email, $password, $passwordConfirmation, $auth, $valid, $emailProcessed, $verified_user;
 
     public function render()
     {
@@ -35,6 +35,7 @@ class Access extends Component
 
         if ($user) {
             $this->auth = 'login';
+            $this->verified_user = $user->name;
         }
 
         $this->emailProcessed = true;

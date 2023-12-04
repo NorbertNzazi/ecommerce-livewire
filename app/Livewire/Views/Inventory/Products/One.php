@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Views\Inventory\Products;
 
+use App\Models\Categories;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,18 +13,20 @@ class One extends Component
 {
     use WithFileUploads;
 
-    public $imagePlaceholder, $name, $price, $stock, $description, $image;
+    public $imagePlaceholder, $name, $price, $stock, $description, $image, $category, $categories;
 
     public $item;
 
     public function mount($id)
     {
         $this->item = Product::find(Crypt::decrypt($id));
+        $this->categories = Categories::all();
 
         $this->name = $this->item->name;
         $this->price = $this->item->price;
         $this->stock = $this->item->qty;
         $this->description = $this->item->description;
+        $this->category = $this->item->category_id;
     }
 
     public function saveProduct()

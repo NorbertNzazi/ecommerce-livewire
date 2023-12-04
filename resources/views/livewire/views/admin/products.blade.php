@@ -30,32 +30,22 @@
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
-                                {{-- <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="name-asc">Name-Asc</option>
-                                        <option value="name-desc">Name-Desc</option>
-                                    </select>
-                                </div> --}}
                             </div>
+
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
                                     <h6><span>{{ count($items) }}</span> Product(s) found</h6>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 col-md-3">
-                                {{-- <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         @unless (count($items) > 0)
-                            <h3>No items found in store</h3>
+                            <h3>No products found</h3>
                         @else
                             @foreach ($items as $item)
                                 <div wire:key="{{ $item->product_id }}" class="col-lg-3 col-md-6 col-sm-6">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDF\Order as PDFOrder;
 use App\Http\Controllers\PDF\Receipt;
 use App\Livewire\Views\Admin\CartItems;
 use App\Livewire\Views\Admin\Categories;
@@ -85,6 +86,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/payments', Payments::class)->name('admin-payments');
 
     Route::get('/reports/receipt', [Receipt::class, 'render']);
+
+    Route::get('/reports/order/{id}', [PDFOrder::class, 'render'])->name('export-pdf');
 });
 
 Route::middleware(['guest'])->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Views\Inventory\Products;
 
+use App\Models\Categories;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -11,11 +12,12 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $imagePlaceholder, $name, $price, $stock, $description, $image;
+    public $imagePlaceholder, $name, $price, $stock, $description, $image, $categories, $category;
 
     public function mount()
     {
         $this->imagePlaceholder = asset('img/placeholder.png');
+        $this->categories = Categories::all();
     }
 
     public function saveProduct()
@@ -35,6 +37,7 @@ class Create extends Component
                 'qty' => $this->stock,
                 'user_id' => Auth::user()->user_id,
                 'description' => $this->description,
+                'category_id' => $this->category,
             ]);
 
             $product->update([
@@ -43,7 +46,7 @@ class Create extends Component
 
             session()->flash('success', 'Product added successfully');
 
-            $this->reset('name', 'price', 'stock', 'description', 'image');
+            $this->reset('name', 'price', 'stock', 'description', 'image', 'category');
         } catch (\Throwable $th) {
             dd($th);
         }

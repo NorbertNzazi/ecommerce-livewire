@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Receipt</title>
+    <title>Order Summary</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,7 +31,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -46,23 +48,24 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="invoice">
         <div class="header">
-            <h1>Invoice Receipt</h1>
+            <h1>Order Summary</h1>
         </div>
 
         <div class="info">
-            <p><strong>Invoice Number:</strong> INV-123456</p>
-            <p><strong>Date:</strong> December 2, 2023</p>
-            <p><strong>Customer:</strong> John Doe</p>
+            <p><strong>Date:</strong> {{ $date }}</p>
+            <p><strong>Customer:</strong> {{ $customer->name . ' ' . $customer->surname }}</p>
+            <strong>{{ $customer->email }}</strong>
         </div>
 
         <table>
             <thead>
                 <tr>
-                    <th>Item</th>
+                    <th>Product</th>
                     <th>Description</th>
                     <th>Quantity</th>
                     <th>Unit Price</th>
@@ -70,27 +73,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Item 1</td>
-                    <td>Description for Item 1</td>
-                    <td>2</td>
-                    <td>$20.00</td>
-                    <td>$40.00</td>
-                </tr>
-                <tr>
-                    <td>Item 2</td>
-                    <td>Description for Item 2</td>
-                    <td>1</td>
-                    <td>$30.00</td>
-                    <td>$30.00</td>
-                </tr>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>{{ $product->product->name }}</td>
+                        <td>{{ $product->product->description }}</td>
+                        <td>{{ $product->qty }}</td>
+                        <td>{{ $product->product->price }}</td>
+                        <td>{{ $product->amount }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
         <div class="total">
-            <p><strong>Total:</strong> $70.00</p>
+            <p><strong>Total:</strong> R{{ $amount }}</p>
         </div>
     </div>
 
 </body>
+
 </html>

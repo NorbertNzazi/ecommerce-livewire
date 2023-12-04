@@ -1536,7 +1536,7 @@ ol {
 }
 
 .product__item {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .product__item:hover .product__item__pic .product__item__pic__hover {

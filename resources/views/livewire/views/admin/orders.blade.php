@@ -49,29 +49,29 @@
                             <h3>No orders found</h3>
                         @else
                             @foreach ($orders as $order)
-                                <div wire:key="{{ $order->product_id }}" class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="product__item" wire:click="viewItem({{ $order->product_id }})"
-                                        style="cursor: pointer;">
+                                <div wire:key="{{ $order->product_id }}"
+                                    class="col-lg-3 col-md-6 col-sm-6 d-flex flex-column"
+                                    style="border-style:dotted;border-radius:10px;cursor: pointer;"
+                                    wire:click="viewOrder({{ $order->order_id }})">
 
-                                        <div wire:loading wire:target="viewItem({{ $order->product_id }})">
+                                    <div class="product__item">
+                                        <div wire:loading wire:target="viewOrder({{ $order->order_id }})">
                                             <livewire:components.loader />
                                         </div>
 
-                                        <div class="product__item__pic set-bg" data-setbg="{{ asset('img/trolley.jpg') }}">
-                                        </div>
-
-                                        <span style="color:{{ $order->qty == 0 ? 'red' : 'green' }};font-weight:bold;">
-                                            {{ $order->qty == 0 ? 'Out of stock' : 'In stock' }}
-                                        </span>
-
                                         <div class="product__item__text">
                                             <h6>
-                                                <a>{{ $order->name }}</a>
+                                                <a>{{ $order->created_at }}</a>
                                             </h6>
 
-                                            <h5>R{{ $order->price }}</h5>
+                                            <h5>R{{ $order->amount }}</h5>
                                         </div>
                                     </div>
+
+                                    <span style="text-align: center;">Order by
+                                        <p style="color:green;font-weight:bold;">
+                                            {{ $order->user->name . ' ' . $order->user->surname }}</p>
+                                    </span>
                                 </div>
                             @endforeach
                         @endunless
@@ -82,3 +82,11 @@
     </section>
     <!-- Hero Section End -->
 </div>
+
+
+{{-- <li wire:key="{{ $orderId }}" wire:click="selectOrder({{ $orderId }})">
+    #{{ $orderData['order']['created_at'] }}
+    <span style="text-align: end;color:green;font-weight:bold;"> R
+        {{ $orderData['order']['amount'] }}
+    </span>
+</li> --}}

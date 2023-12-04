@@ -62,11 +62,13 @@
                                 </div>
 
                                 <div class="checkout__order"
-                                    style="background-color: #cfcfcf;border-radius:5px;width:50%;">
+                                    style="background-color: #fff;border-radius:5px;width:50%;">
+
+                                    <h3 class="mb-3">Welcome back {{ $verified_user }}</h3>
 
                                     {{-- Email address --}}
                                     <div class="checkout__input">
-                                        <p>Email Address
+                                        <p style="color: #000;font-weight:lighter;">Email Address
                                             <span>*
                                                 @error('email')
                                                     {{ $message }}
@@ -79,7 +81,8 @@
 
                                     {{-- Password --}}
                                     <div class="checkout__input">
-                                        <p>Password
+
+                                        <p style="color: #000;font-weight:lighter;">Password
                                             <span>*
                                                 @error('password')
                                                     {{ $message }}

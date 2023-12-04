@@ -47,7 +47,7 @@
 
                             <form wire:submit.prevent="saveProduct()" style="width:100%;" class="d-flex flex-column">
 
-                                <div wire:loading wire:target="createUser()">
+                                <div wire:loading wire:target="saveProduct()">
                                     <livewire:components.loader />
                                 </div>
 
