@@ -46,8 +46,8 @@ return [
 
         'image' => [
             'driver' => 'local',
-            'root' => base_path('public'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => base_path('public_html'),
+            'url' => env('APP_URL') . '/public_html',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -84,9 +84,4 @@ return [
     | the locations of the links and the values should be their targets.
     |
     */
-
-    'links' => [
-        public_path('storage') => storage_path('app/public'),
-    ],
-
 ];
